@@ -1,0 +1,51 @@
+<h2 ng-bind="heading"></h2>
+<form ng-submit="frmEmp.$valid &&  processEmp()" name="frmEmp">
+    <label class="text-success" ng-if="success">{{success}}</label>
+    <label class="text-danger" ng-if="error">{{error}}</label>
+    <div class="form-group">
+        <label for="empName">Name</label>
+        <input type="text" id="empName" class="form-control" placeholder="Name" ng-model="employee.name" ng-maxlength="40" required>
+        <div ng-messages="frmEmp.name.$error" ng-if='frmEmp.name.$dirty'>
+            <p ng-message="maxlength" class="text-danger">Max length is 40.</p>
+            <p ng-message="required" class="text-danger">Please enter the employee name</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="empEmail">Email</label>
+        <input type="email" id="empEmail" class="form-control" placeholder="Email" ng-model="employee.email" ng-maxlength="40" required>
+        <div ng-messages="frmEmp.email.$error" ng-if='frmEmp.email.$dirty'>
+            <p ng-message="maxlength" class="text-danger">Max length is 40. </p>
+            <p ng-message="required" class="text-danger">Please enter the email</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="empGender">Gender</label>
+       <select class="form-control" ng-model="employee.gender" required>
+           <option value="male">Male</option>
+           <option value="female">Female</option>
+       </select>
+    </div>   
+    <div class="form-group">
+        <label for="empDept">Department</label>
+        <select class="form-control" ng-init="selected=selected[0].value" ng-model="employee.department" ng-options="option as option for option in departments" required></select>        
+        <div ng-messages="frmEmp.department.$error" ng-if='frmEmp.department.$dirty'>
+            <p ng-message="required" class="text-danger">Please select the department</p>
+        </div>
+    </div> 
+    <div class="form-group">
+        <label for="empRole">Role</label>
+         <select class="form-control" ng-init="selected=selected[0].value" ng-model="employee.role" ng-options="option as option for option in roles" required></select>
+    </div>
+    <div class="form-group">
+        <label for="empSalary">Salary</label>
+        <input type="number" id="empSalary" class="form-control" placeholder="Salary" ng-model="employee.salary" required>
+        <div ng-messages="frmEmp.salary.$error" ng-if='frmEmp.salary.$dirty'>
+            <p ng-message="required" class="text-danger">Please enter the salary.</p>
+        </div>
+    </div>   
+    <div class="form-group text-left">
+        <button type="submit" class="btn btn-info">Submit</button>  
+    </div>
+    <!-- <a ui-sref="base.dashboard" class="btn btn-primary">Login</a> -->
+</form>    
+<!-- Don't have account? <a ui-sref="signup">Signup</a>  -->
