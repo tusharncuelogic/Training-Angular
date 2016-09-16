@@ -1,4 +1,4 @@
-angular.module('auth.service', [])
+angular.module('auth')
     .factory('authService', ['localStorageServiceWrapper',authService]) ;
 
 function authService(localStorageServiceWrapper) {

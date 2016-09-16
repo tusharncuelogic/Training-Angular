@@ -83,11 +83,15 @@ function employeesService(localStorageServiceWrapper) {
             }
         ];
 
-    service.getEmployees = getEmployees ;   
+    
+    service.getEmployees = getEmployees ;
     return service ;
-    function getEmployees() {
+    function getEmployees() {        
         return employeeList ;
     }
 
+    function deleteEmployee(empId){
+
+    }
     //END
 };

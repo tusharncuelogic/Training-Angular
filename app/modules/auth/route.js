@@ -6,9 +6,7 @@
         .config(['$stateProvider', stateProvider]);
 
     function stateProvider($stateProvider) {
-
         
-
         $stateProvider
         .state('signup', {
             url: '/signup',

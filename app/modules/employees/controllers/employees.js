@@ -8,8 +8,7 @@
     function employeesController($scope,$state,employeesService,$stateParams,$window) {
         $scope.departments = ["Software Developement" , "Support", "Testing"] ;
         $scope.roles = ["Software engineer","Team Leader","Project Maneger", 
-        "Designer" , "Web developer","Tester"] ;
-
+        "Designer" , "Web developer","Tester"];
         $scope.heading = 'Add Employee' ;
         $scope.blackSpinner = 'resource/images/blackSpinner.gif';
         $scope.employee = {image:"http://lorempixel.com/150/100/"} ;
@@ -19,6 +18,7 @@
         $scope.sorts = [{key:"name",value:"Name"},{key:"email",value:"Email"},{key:"department",value:"Department"}];
         $scope.sortv = $scope.sorts[0];
         $scope.employees = employeesService.getEmployees();
+        $scope.alert = "Sure to delete ?";
         if($stateParams.Id)
         {
             console.log("Update employees") ;
@@ -48,8 +48,7 @@
                         if($scope.actives.indexOf(dt.id) > -1)
                         {
                             $scope.employees.splice(i--,1) ;
-                            //$scope.actives.splice($scope.actives.indexOf(dt.id) , 1) ;
-                        }                
+                        }
                     }
                 }
             }           
@@ -90,22 +89,26 @@
                 return x < y ? -1 : x > y ? 1 : 0;
             }) ;
             $scope.employees = sorted;          
-        }      
+        }
 
-        $scope.delete = function(empId)
+        $scope.delete = function(empId , alertText)
         {
+            if(!alertText)
+            {
+                alertText = $scope.alert;
+            }
+            
             var idx = null ;
             var isDelete = null;
             for(var i = 0; i < $scope.employees.length; i++) {
                 var dt = $scope.employees[i] ;
-                if( dt.id == empId )
+                if( dt.id == empId)
                 {
                     isDelete = 1 ;
-                    idx = i;                    
+                    idx = i;                   
                 }
-            }
-            
-            var deleteUser = $window.confirm('Are you sure , you want to delete?') ;
+            }            
+            var deleteUser = $window.confirm(alertText) ;
             if(isDelete)
             {
                 if(deleteUser)

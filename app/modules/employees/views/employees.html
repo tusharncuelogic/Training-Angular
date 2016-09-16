@@ -25,7 +25,7 @@
     <td ng-bind="emp.email"></td>
     <td ng-bind="emp.department"></td>
     <td ng-bind="emp.salary"></td>
-    <td><a ui-sref="base.employee({Id:emp.id})" class="btn btn-primary">Edit</a>&nbsp;&nbsp;<a href="" class="btn btn-danger" ng-click="delete(emp.id)">Delete</a></td>
-  </tr>  
+    <td><a ui-sref="base.employee({Id:emp.id})" class="btn btn-primary">Edit</a>&nbsp;&nbsp;<alert-button btn-class="btn btn-danger" ng-click="delete(emp.id ,'Are you sure to delete the employee .?')"></alert-button></td>
+  </tr>
 </tbody>
 </table> 
