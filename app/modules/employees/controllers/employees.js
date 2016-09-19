@@ -3,9 +3,10 @@
     angular
         .module('employees')
         .controller('employeesController',['$scope','$state','employeesService',
-            '$stateParams','$window',employeesController]) ;
+            '$stateParams','$window','$mdToast',employeesController]) ;
 
-    function employeesController($scope,$state,employeesService,$stateParams,$window) {
+    function employeesController($scope,$state,employeesService,$stateParams,$window , $mdToast) {
+
         $scope.departments = ["Software Developement" , "Support", "Testing"] ;
         $scope.roles = ["Software engineer","Team Leader","Project Maneger", 
         "Designer" , "Web developer","Tester"];
@@ -89,6 +90,18 @@
                 return x < y ? -1 : x > y ? 1 : 0;
             }) ;
             $scope.employees = sorted;          
+        }
+
+        $scope.showSimpleToast = function()
+        {
+            console.log("Simple toast displayed");
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Simple Toast!')
+                .position('bottom center' )
+                .hideDelay(3000)
+            );
+
         }
 
         $scope.delete = function(empId , alertText)

@@ -16,12 +16,17 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
     path = require('path'),
     filePath = {
         appCss: [
+            'bower_components/angular-material/angular-material.css',
             'bower_components/bootstrap/dist/css/bootstrap.css',
+            'bower_components/angular-material-data-table/dist/md-data-table.min.css',
             'assets/css/*.css'
         ],
         appJs: [
             'bower_components/angular/angular.js',
+            'bower_components/angular-aria/angular-aria.js',
             'bower_components/angular-animate/angular-animate.js',
+            'bower_components/angular-material/angular-material.js',
+            'bower_components/angular-material-data-table/dist/md-data-table.min.js',
             'bower_components/angular-ui-router/release/angular-ui-router.js',
             'bower_components/angular-lazy-img/release/angular-lazy-img.js',
             'bower_components/angular-bootstrap/ui-bootstrap.js',
@@ -140,13 +145,11 @@ gulp.task('nodemon', function() {
 
 /*Watch for changes in file, compile it for changes has done*/
 gulp.task('watch', function() {
-
     livereload.listen()
     gulp.watch(filePath.appCss, ['appCss']).on('change', livereload.changed);
     gulp.watch(filePath.appJs, ['appJs']).on('change', livereload.changed);
     gulp.watch(filePath.indexHtml, ['appIndexHtml']).on('change', livereload.changed);
     gulp.watch(filePath.appImg, ['appImg']).on('change', livereload.changed);
-
 });
 
 /*Task for removing old html/js/css files*/
@@ -154,7 +157,6 @@ gulp.task('clean', ['clean:indexHtml', 'clean:appJs', 'clean:appCss', 'clean:app
 
 /*Default task which accepts two parameter from command env (name of environment file) and minify flag for minification*/
 gulp.task('default', ['addEnv'], function(minify, callback) {
-
     if (minify) {
         //Minify all the files and run server
         runSequence('appJsMin', 'appCssMin', 'appImg','appIndexHtmlMin', ['watch', 'nodemon'], callback);

@@ -1,7 +1,17 @@
-<!-- <header ui-view="header"></header> -->
-<header-menu></header-menu>
+<!-- <md-toolbar layout="row" class="md-toolbar-tools" ui-view="header"></md-toolbar>
+ -->
+ <header-menu></header-menu>
+<div flex layout="row">	
+	<md-sidenav ui-view="sidebar" layout="column" md-is-locked-open='true'></md-sidenav>
+	<md-content flex="" layout-padding=""><div flex layout-padding ui-view="content">
+	</div>
+	</md-content>
+</div>
+
+<!-- 
 <section class="container">
     <aside ui-view="sidebar" class="nav"></aside>
     <aside ui-view="content" class="content">Content</aside>
+    <md-content flex layout="column" ui-view="content"> </md-content>
 </section>
-<footer ui-view="footer"></footer>
+<footer ui-view="footer"></footer> -->

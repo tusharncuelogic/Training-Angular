@@ -3,37 +3,17 @@
 var hapi = require('hapi'),
     server = new hapi.Server();
 
-server.register(require('inert'), function(err) {
+var routes = require('./api/routes');
 
+server.register(require('inert'), function(err) {
+    
     if (err) {
         throw err;
     }
 
     server.connection({ port: 3000 });
 
-    server.route([{
-        method: 'GET',
-        path: '/resource/{param*}',
-        handler: {
-            directory: {
-                path: 'build/resource'
-            }
-        }
-    }, {
-        method: 'GET',
-        path: '/app/{param*}',
-        handler: {
-            directory: {
-                path: 'app'
-            }
-        }
-    }, {
-        method: 'GET',
-        path: '/{path*}',
-        handler: function(request, reply) {
-            reply.file('./build/index.html');
-        }
-    }]);
+    server.route(routes);
 
     server.start(function(err) {
         if (err) {

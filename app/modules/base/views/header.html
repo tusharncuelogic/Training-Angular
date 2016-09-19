@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -11,7 +11,7 @@
     <div id="navbar" class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true">
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
+          ;  <li><a href="#about">About</a></li>
             <li><a ui-sref="base.contact">Contact</a></li>
             <li uib-dropdown on-toggle="toggled(open)">
                 <a href="#" id="dropdown" uib-dropdown-toggle>User Name <span class="caret"></span></a>
@@ -21,4 +21,23 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->
+
+<span>Logo Here</span>
+<md-menu>
+<md-button aria-label="Open menu" ng-click="$mdOpenMenu()">
+Hello , <span ng-bind="user.name"></span>
+</md-button>
+<md-menu-content width="4">
+<md-menu-item>
+  <md-button ui-sref="base.profile" ng-click="ctrl.redial($event)">
+    Profile
+  </md-button>
+</md-menu-item>
+<md-menu-item>
+  <md-button ui-sref="base.logout" ng-click="ctrl.redial($event)">
+    Logout
+  </md-button>
+</md-menu-item>
+</md-menu-content>
+</md-menu>

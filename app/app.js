@@ -3,10 +3,12 @@
 (function() {
     // Declare app level module
     angular
-        .module('angularClientApp', [
+        .module('angularClientApp', [            
             'ui.router',
             'ngAnimate',
             'ngMessages',
+            'ngMaterial',
+            'md.data.table',
             'angularLazyImg',
             'ui.bootstrap',
             'localStorage.service',
