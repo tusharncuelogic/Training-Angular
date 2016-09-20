@@ -5,6 +5,6 @@ angular.module('employees').directive("alertButton",["$window",function($window)
         	ondelete:"&",
         	btnClass:"@"
         },
-        template: '<button ng-click="ondelete()" ng-class="btnClass">Delete</button>'
+        template: '<md-button ng-click="ondelete()" ng-class="btnClass">Delete</md-button>'
     }
 }]);

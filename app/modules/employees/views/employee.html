@@ -1,51 +1,78 @@
-<h2 ng-bind="heading"></h2>
-<form ng-submit="frmEmp.$valid &&  processEmp()" name="frmEmp">
-    <label class="text-success" ng-if="success">{{success}}</label>
-    <label class="text-danger" ng-if="error">{{error}}</label>
-    <div class="form-group">
-        <label for="empName">Name</label>
-        <input type="text" id="empName" class="form-control" placeholder="Name" ng-model="employee.name" ng-maxlength="40" required>
-        <div ng-messages="frmEmp.name.$error" ng-if='frmEmp.name.$dirty'>
+ <md-toolbar>
+  <div class="md-toolbar-tools">   
+    <h2 ng-bind="heading"></h2>        
+  </div>
+</md-toolbar>
+
+
+<md-content layout-padding>
+
+<form ng-submit="frmEmp.$valid &&  processEmp()" layout="column" name="frmEmp">
+
+    <md-input-container class="md-block">
+        <label>Name</label>
+        <input required type="text" md-no-asterisk name="name" ng-model="employee.name">
+        <div ng-messages="frmEmp.name.$error" role="alert" md-auto-hide="false">
+            <p ng-message="required">Please enter the employee name</p>
+        </div>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Email</label>
+        <input type="email" required md-no-asterisk name="email" ng-model="employee.email">
+        <div ng-messages="frmEmp.email.$error" ng-if='frmEmp.email.$dirty' multiple md-auto-hide="false">
             <p ng-message="maxlength" class="text-danger">Max length is 40.</p>
-            <p ng-message="required" class="text-danger">Please enter the employee name</p>
+            <p ng-message="required" class="text-danger">Please enter the employee email</p>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="empEmail">Email</label>
-        <input type="email" id="empEmail" class="form-control" placeholder="Email" ng-model="employee.email" ng-maxlength="40" required>
-        <div ng-messages="frmEmp.email.$error" ng-if='frmEmp.email.$dirty'>
-            <p ng-message="maxlength" class="text-danger">Max length is 40. </p>
-            <p ng-message="required" class="text-danger">Please enter the email</p>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Gender</label>
+        <md-select name="gender" ng-model="employee.gender" required>
+            <md-option value="male">Male</md-option>
+            <md-option value="female">Female</md-option>
+          </md-select>
+        <div ng-messages="frmEmp.gender.$error" ng-if='frmEmp.gender.$dirty' multiple md-auto-hide="false">
+            <p ng-message="required" class="text-danger">Please select the gender</p>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="empGender">Gender</label>
-       <select class="form-control" ng-model="employee.gender" required>
-           <option value="male">Male</option>
-           <option value="female">Female</option>
-       </select>
-    </div>   
-    <div class="form-group">
-        <label for="empDept">Department</label>
-        <select class="form-control" ng-init="selected=selected[0].value" ng-model="employee.department" ng-options="option as option for option in departments" required></select>        
-        <div ng-messages="frmEmp.department.$error" ng-if='frmEmp.department.$dirty'>
-            <p ng-message="required" class="text-danger">Please select the department</p>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Department</label>
+          <md-select name="department" ng-model="employee.department" required>
+            <md-option ng-repeat="dept in departments" ng-value="dept">
+              {{dept}}
+            </md-option>
+          </md-select>
+        <div ng-messages="frmEmp.gender.$error" ng-if='frmEmp.gender.$dirty' multiple md-auto-hide="false">
+            <p ng-message="required" class="text-danger">Please select the gender</p>
         </div>
-    </div> 
-    <div class="form-group">
-        <label for="empRole">Role</label>
-         <select class="form-control" ng-init="selected=selected[0].value" ng-model="employee.role" ng-options="option as option for option in roles" required></select>
-    </div>
-    <div class="form-group">
-        <label for="empSalary">Salary</label>
-        <input type="number" id="empSalary" class="form-control" placeholder="Salary" ng-model="employee.salary" required>
-        <div ng-messages="frmEmp.salary.$error" ng-if='frmEmp.salary.$dirty'>
-            <p ng-message="required" class="text-danger">Please enter the salary.</p>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Role</label>
+          <md-select name="role" ng-model="employee.role" required>
+            <md-option ng-repeat="role in roles" ng-value="role">
+              {{role}}
+            </md-option>
+          </md-select>
+        <div ng-messages="frmEmp.role.$error" ng-if='frmEmp.role.$dirty' multiple md-auto-hide="false">
+            <p ng-message="required" class="text-danger">Please select your role</p>
         </div>
-    </div>   
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Salary (INR)</label>
+        <input type="number" name="salary" ng-model="employee.salary">
+        <div ng-messages="frmEmp.salary.$error" ng-if='frmEmp.salary.$dirty' multiple md-auto-hide="false">
+            <p ng-message="required" class="text-danger">Please enter your salary</p>
+        </div>
+    </md-input-container>
+    
     <div class="form-group text-left">
-        <button type="submit" class="btn btn-info">Submit</button>  
+        <md-button type="submit" class="md-raised md-primary md-button md-ink-ripple">Submit</md-button>  
     </div>
     <!-- <a ui-sref="base.dashboard" class="btn btn-primary">Login</a> -->
 </form>    
 <!-- Don't have account? <a ui-sref="signup">Signup</a>  -->
+</md-content>

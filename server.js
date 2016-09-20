@@ -34,11 +34,12 @@ server.register(require('inert'), function(err) {
             reply.file('./build/index.html');
         }
     }]);
-
+    
     server.start(function(err) {
         if (err) {
             throw err;
         }
         console.log('Web server is listening to http://localhost:3000');
     });
+    
 });

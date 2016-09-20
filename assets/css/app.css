@@ -178,3 +178,33 @@ footer {
         width: 100%;
     }
 }
+
+/*.site-content-toolbar {
+    background: #f6f6f6 !important;
+    color: #202020 !important;
+    z-index: 3;
+}*/
+
+.card_success 
+{
+    background-color: #65cc65 !important;
+}
+
+md-sidenav{background-color: #4CAF50;}
+
+.loginBox {
+  max-width:  90%;
+  width: 500px
+}
+
+md-dialog.overlay
+{
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+}
+
+md-dialog.overlay md-progress-circular
+{
+    margin: 0 auto;
+}

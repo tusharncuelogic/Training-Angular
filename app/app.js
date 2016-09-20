@@ -20,7 +20,7 @@
             'employees'
         ])
         .run(['$rootScope','$state','authService',run])
-        .config(['$urlRouterProvider', '$locationProvider', '$httpProvider',initializeConfigurationPhase])
+        .config(['$urlRouterProvider', '$locationProvider', '$httpProvider','$mdThemingProvider',initializeConfigurationPhase])
         .factory('authInterceptor', ['localStorageServiceWrapper','authService',authInterceptor]) ;
 
     function run($rootScope , $state , authService) {
@@ -41,13 +41,20 @@
       });
     }
 
-    function initializeConfigurationPhase( $urlRouterProvider, $locationProvider , $httpProvider ) {
+    function initializeConfigurationPhase( $urlRouterProvider, $locationProvider , $httpProvider ,$mdThemingProvider) {
+        
+        //Routing configuration
         $httpProvider.interceptors.push('authInterceptor') ;        
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
         }) ;
         $urlRouterProvider.otherwise('/login') ;
+
+        //Theme setting
+        $mdThemingProvider.theme('default')
+            .primaryPalette('green')
+            .accentPalette('orange');
     }
 
     function authInterceptor(localStorageServiceWrapper ,authService ) {
